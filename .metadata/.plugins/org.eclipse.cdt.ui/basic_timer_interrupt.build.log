@@ -1,0 +1,10 @@
+21:58:08 **** Build of configuration Debug for project basic_timer_interrupt ****
+make -j8 all 
+arm-none-eabi-size  basic_timer_interrupt.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1208	      0	   1568	   2776	    ad8	basic_timer_interrupt.elf
+Finished building: default.size.stdout
+ 
+
+21:58:08 Build Finished. 0 errors, 0 warnings. (took 71ms)
+

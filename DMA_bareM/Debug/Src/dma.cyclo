@@ -1,0 +1,4 @@
+../Inc/core_cm4.h:1688:22:__NVIC_EnableIRQ	2
+../Src/dma.c:10:6:DMA_Init	1
+../Src/dma.c:18:6:DMA_Mem_Transfer	2
+../Src/dma.c:41:6:DMA2_Stream0_IRQHandler	2

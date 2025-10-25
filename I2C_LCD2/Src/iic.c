@@ -1,0 +1,23 @@
+/*
+ * iic.c
+ *
+ *  Created on: Sep 19, 2025
+ *      Author: krushna
+ */
+#include"iic.h"
+void I2cinit(void)
+{
+
+}
+void I2cstart(void);
+//
+void I2crepeat_start(void);
+//
+void I2cstop(void);
+void I2csend_slave_add(uint8_t  add);
+void I2csend_data(uint8_t data);
+void I2crec_data_ack(void);
+void I2crec_data_nack(void);
+
+void I2cwrite(uint8_t addr,uint8_t data);
+

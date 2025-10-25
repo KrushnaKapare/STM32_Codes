@@ -1,0 +1,10 @@
+21:57:59 **** Build of configuration Debug for project CAN_TX ****
+make -j8 all 
+arm-none-eabi-size  CAN_TX.elf 
+   text	   data	    bss	    dec	    hex	filename
+   8848	     12	   1644	  10504	   2908	CAN_TX.elf
+Finished building: default.size.stdout
+ 
+
+21:57:59 Build Finished. 0 errors, 0 warnings. (took 123ms)
+

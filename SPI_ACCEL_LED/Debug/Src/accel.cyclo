@@ -1,0 +1,3 @@
+../Src/accel.c:10:6:AccelInit	1
+../Src/accel.c:19:5:AccelWaitForChange	2
+../Src/accel.c:27:6:AccelRead	1

@@ -1,0 +1,2 @@
+../Src/switch.c:9:6:switch_init	16	static
+../Src/switch.c:18:9:switch_status	4	static

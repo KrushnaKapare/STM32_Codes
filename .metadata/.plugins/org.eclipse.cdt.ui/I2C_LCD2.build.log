@@ -1,0 +1,17 @@
+22:05:34 **** Incremental Build of configuration Debug for project I2C_LCD2 ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/iic.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/iic.d" -MT"Src/iic.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=soft -mthumb -o "Src/iic.o"
+arm-none-eabi-gcc -o "I2C_LCD2.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/krushna/STM32_Projects/I2C_LCD2/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C_LCD2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C_LCD2.elf
+ 
+arm-none-eabi-size  I2C_LCD2.elf 
+arm-none-eabi-objdump -h -S I2C_LCD2.elf  > "I2C_LCD2.list"
+   text	   data	    bss	    dec	    hex	filename
+   4440	     84	   1900	   6424	   1918	I2C_LCD2.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C_LCD2.list
+ 
+
+22:05:34 Build Finished. 0 errors, 0 warnings. (took 284ms)
+

@@ -1,0 +1,26 @@
+22:10:52 **** Incremental Build of configuration Debug for project ADC_poll ****
+make -j8 all 
+arm-none-eabi-gcc -o "ADC_poll.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/krushna/STM32_Projects/ADC_poll/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_poll.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+/opt/st/stm32cubeide_1.19.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: ./Src/switch.o: in function `switch_init':
+/home/krushna/STM32_Projects/ADC_poll/Debug/../Src/switch.c:13:(.text.switch_init+0xc): undefined reference to `BV'
+/opt/st/stm32cubeide_1.19.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: /home/krushna/STM32_Projects/ADC_poll/Debug/../Src/switch.c:14:(.text.switch_init+0x24): undefined reference to `BV'
+/opt/st/stm32cubeide_1.19.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: /home/krushna/STM32_Projects/ADC_poll/Debug/../Src/switch.c:14:(.text.switch_init+0x32): undefined reference to `BV'
+/opt/st/stm32cubeide_1.19.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: /home/krushna/STM32_Projects/ADC_poll/Debug/../Src/switch.c:15:(.text.switch_init+0x4e): undefined reference to `BV'
+/opt/st/stm32cubeide_1.19.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: /home/krushna/STM32_Projects/ADC_poll/Debug/../Src/switch.c:15:(.text.switch_init+0x5c): undefined reference to `BV'
+/opt/st/stm32cubeide_1.19.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: ./Src/switch.o:/home/krushna/STM32_Projects/ADC_poll/Debug/../Src/switch.c:21: more undefined references to `BV' follow
+collect2: error: ld returned 1 exit status
+make: *** [makefile:63: ADC_poll.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+22:11:16 **** Incremental Build of configuration Debug for project ADC_poll ****
+make -j8 all 
+arm-none-eabi-gcc -o "ADC_poll.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/krushna/STM32_Projects/ADC_poll/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_poll.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+/opt/st/stm32cubeide_1.19.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: ./Src/switch.o: in function `switch_init':
+/home/krushna/STM32_Projects/ADC_poll/Debug/../Src/switch.c:13:(.text.switch_init+0xc): undefined reference to `BV'
+/opt/st/stm32cubeide_1.19.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: /home/krushna/STM32_Projects/ADC_poll/Debug/../Src/switch.c:14:(.text.switch_init+0x24): undefined reference to `BV'
+/opt/st/stm32cubeide_1.19.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: /home/krushna/STM32_Projects/ADC_poll/Debug/../Src/switch.c:14:(.text.switch_init+0x32): undefined reference to `BV'
+/opt/st/stm32cubeide_1.19.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: /home/krushna/STM32_Projects/ADC_poll/Debug/../Src/switch.c:15:(.text.switch_init+0x4e): undefined reference to `BV'
+/opt/st/stm32cubeide_1.19.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: /home/krushna/STM32_Projects/ADC_poll/Debug/../Src/switch.c:15:(.text.switch_init+0x5c): undefined reference to `BV'
+/opt/st/stm32cubeide_1.19.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: ./Src/switch.o:/home/krushna/STM32_Projects/ADC_poll/Debug/../Src/switch.c:21: more undefined references to `BV' follow
+collect2: error: ld returned 1 exit status
+make: *** [makefile:63: ADC_poll.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.

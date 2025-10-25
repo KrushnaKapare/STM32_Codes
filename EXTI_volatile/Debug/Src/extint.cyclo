@@ -1,0 +1,2 @@
+../Src/extint.c:12:6:extint_init	1
+../Src/extint.c:34:6:EXTI0_IRQHandler	1

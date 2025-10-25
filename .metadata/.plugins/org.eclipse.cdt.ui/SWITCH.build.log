@@ -1,0 +1,10 @@
+21:58:05 **** Build of configuration Debug for project SWITCH ****
+make -j8 all 
+arm-none-eabi-size  SWITCH.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1164	      0	   1568	   2732	    aac	SWITCH.elf
+Finished building: default.size.stdout
+ 
+
+21:58:05 Build Finished. 0 errors, 0 warnings. (took 71ms)
+
