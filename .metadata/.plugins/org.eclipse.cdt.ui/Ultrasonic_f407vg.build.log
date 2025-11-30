@@ -1,0 +1,16 @@
+15:54:01 **** Incremental Build of configuration Debug for project Ultrasonic_f407vg ****
+make -j8 all 
+arm-none-eabi-gcc -o "Ultrasonic_f407vg.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/krushna/STM32_Projects/Ultrasonic_f407vg/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Ultrasonic_f407vg.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Ultrasonic_f407vg.elf
+ 
+arm-none-eabi-size  Ultrasonic_f407vg.elf 
+arm-none-eabi-objdump -h -S Ultrasonic_f407vg.elf  > "Ultrasonic_f407vg.list"
+   text	   data	    bss	    dec	    hex	filename
+  28732	    468	   2060	  31260	   7a1c	Ultrasonic_f407vg.elf
+Finished building: default.size.stdout
+ 
+Finished building: Ultrasonic_f407vg.list
+ 
+
+15:54:01 Build Finished. 0 errors, 0 warnings. (took 241ms)
+

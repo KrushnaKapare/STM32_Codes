@@ -1,0 +1,57 @@
+00:22:27 **** Incremental Build of configuration Debug for project ultrasonic_F407 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'Ultrasonic_distance':
+../Core/Src/main.c:56:17: warning: implicit declaration of function '_HAL_TIM_ENABLE_IT' [-Wimplicit-function-declaration]
+   56 |                 _HAL_TIM_ENABLE_IT(ULTRASONIC_ECHO_PIN_IC, TIM_IT_CC1);
+      |                 ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'HAL_TIM_IC_CaptureCallback':
+../Core/Src/main.c:72:17: warning: implicit declaration of function '_HAL_TIM_SET_COUNTER' [-Wimplicit-function-declaration]
+   72 |                 _HAL_TIM_SET_COUNTER(&htim4, 0);
+      |                 ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:138:11: warning: implicit declaration of function 'Read_Ultrasonic' [-Wimplicit-function-declaration]
+  138 |           Read_Ultrasonic();
+      |           ^~~~~~~~~~~~~~~
+../Core/Src/main.c:193:13: error: invalid storage class for function 'MX_TIM4_Init'
+  193 | static void MX_TIM4_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:241:13: error: invalid storage class for function 'MX_USART3_UART_Init'
+  241 | static void MX_USART3_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:274:13: error: invalid storage class for function 'MX_GPIO_Init'
+  274 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:311:1: error: expected declaration or statement at end of input
+  311 | }
+      | ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:41:13: warning: 'MX_GPIO_Init' used but never defined
+   41 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:42:13: warning: 'MX_TIM4_Init' used but never defined
+   42 | static void MX_TIM4_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:43:13: warning: 'MX_USART3_UART_Init' used but never defined
+   43 | static void MX_USART3_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:307:6: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  307 | void Error_Handler(void)
+      |      ^~~~~~~~~~~~~
+../Core/Src/main.c:274:13: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  274 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:241:13: warning: 'MX_USART3_UART_Init' defined but not used [-Wunused-function]
+  241 | static void MX_USART3_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:193:13: warning: 'MX_TIM4_Init' defined but not used [-Wunused-function]
+  193 | static void MX_TIM4_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:146:6: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
+  146 | void SystemClock_Config(void)
+      |      ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+00:22:27 Build Failed. 5 errors, 11 warnings. (took 350ms)
+

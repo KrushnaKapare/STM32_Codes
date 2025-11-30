@@ -37,7 +37,7 @@ int main(void)
 
 
 			led_toggle(arr[i]);
-			DelayMs(100);
+             DelayMs(100);
 			i=(i+1)%4;
 
 

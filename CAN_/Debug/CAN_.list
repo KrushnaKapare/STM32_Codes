@@ -381,11 +381,11 @@ int main(void)
  80004f4:	b580      	push	{r7, lr}
  80004f6:	b082      	sub	sp, #8
  80004f8:	af00      	add	r7, sp, #0
-  /* USER CODE END 1 */
-
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+
+
   HAL_Init();
  80004fa:	f000 fa63 	bl	80009c4 <HAL_Init>
   /* USER CODE BEGIN Init */

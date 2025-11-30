@@ -1,0 +1,185 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include <stdio.h>
+#include <string.h>
+/* USER CODE END Includes */
+
+/* Private variables ---------------------------------------------------------*/
+TIM_HandleTypeDef htim2;
+UART_HandleTypeDef huart3;
+
+/* USER CODE BEGIN PV */
+volatile uint32_t ic_val1 = 0;
+volatile uint32_t ic_val2 = 0;
+volatile uint8_t is_first_captured = 0;
+volatile uint8_t capture_done = 0;
+/* USER CODE END PV */
+
+/* Function prototypes */
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_TIM2_Init(void);
+static void MX_USART3_UART_Init(void);
+
+/* USER CODE BEGIN PFP */
+static void DWT_Delay_Init(void);
+static void delay_us(uint32_t us);
+static void uart_printf(const char *fmt, ...);
+/* USER CODE END PFP */
+
+int main(void)
+{
+  HAL_Init();
+  SystemClock_Config();
+
+  MX_GPIO_Init();
+  MX_TIM2_Init();
+  MX_USART3_UART_Init();
+
+  DWT_Delay_Init();
+
+  __HAL_TIM_SET_COUNTER(&htim2, 0);
+  HAL_TIM_IC_Start_IT(&htim2, TIM_CHANNEL_1);
+
+  uart_printf("STM32F407VG Ultrasonic (TIM2 IC -> USART3)\r\n");
+
+  while (1)
+  {
+      is_first_captured = 0;
+      capture_done = 0;
+      __HAL_TIM_SET_COUNTER(&htim2, 0);
+
+      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_SET);
+      delay_us(10);
+      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET);
+
+      uint32_t start = HAL_GetTick();
+      while (!capture_done)
+      {
+          if ((HAL_GetTick() - start) > 50)
+          {
+              uart_printf("Timeout: no echo\r\n");
+              break;
+          }
+      }
+
+      if (capture_done)
+      {
+          uint32_t diff;
+          if (ic_val2 >= ic_val1)
+              diff = ic_val2 - ic_val1;
+          else
+              diff = (0xFFFFFFFF - ic_val1) + ic_val2 + 1;
+
+          float distance = diff * 0.01715f;
+          uart_printf("Pulse: %lu us, Dist: %.2f cm\r\n", diff, distance);
+      }
+
+      HAL_Delay(200);
+  }
+}
+
+/* SYSTEM CLOCK, TIM2, USART3 remain unchanged */
+
+/**
+  * @brief GPIO Initialization Function
+  * @retval None
+  */
+static void MX_GPIO_Init(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+
+  /* TRIG pin: PA1 OUTPUT */
+  GPIO_InitStruct.Pin = GPIO_PIN_1;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /* ECHO pin: PA0 as AF (TIM2_CH1) */
+  GPIO_InitStruct.Pin = GPIO_PIN_0;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  GPIO_InitStruct.Alternate = GPIO_AF1_TIM2;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+}
+
+/* USER CODE BEGIN 4 */
+
+/*********************  IMPORTANT PART ADDED  *********************/
+/* TIM2 Interrupt Handler */
+void TIM2_IRQHandler(void)
+{
+    HAL_TIM_IRQHandler(&htim2);
+}
+
+/* Input Capture Callback */
+void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
+{
+    if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1)
+    {
+        if (is_first_captured == 0)
+        {
+            ic_val1 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
+            is_first_captured = 1;
+
+            __HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_FALLING);
+        }
+        else
+        {
+            ic_val2 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
+
+            __HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_RISING);
+
+            capture_done = 1;
+        }
+    }
+}
+/***************************************************************/
+
+static void DWT_Delay_Init(void)
+{
+    CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
+    DWT->CYCCNT = 0;
+    DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
+}
+
+static void delay_us(uint32_t us)
+{
+    uint32_t cycles = (SystemCoreClock / 1000000L) * us;
+    uint32_t start = DWT->CYCCNT;
+    while ((DWT->CYCCNT - start) < cycles);
+}
+
+#include <stdarg.h>
+static void uart_printf(const char *fmt, ...)
+{
+    char buf[128];
+    va_list args;
+    va_start(args, fmt);
+    vsnprintf(buf, sizeof(buf), fmt, args);
+    va_end(args);
+    HAL_UART_Transmit(&huart3, (uint8_t *)buf, strlen(buf), HAL_MAX_DELAY);
+}
+
+/* USER CODE END 4 */

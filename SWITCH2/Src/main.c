@@ -28,7 +28,10 @@
 int main(void)
 {
 
-	led_init(LED_GREEN);
+	uint8_t arr[] = {LED_GREEN, LED_ORANGE, LED_RED, LED_BLUE};
+								for(uint8_t i = 0 ; i < 4 ; i++)
+									led_init(arr[i]);
+								uint8_t i=0;
 
 
 	switch_init(SWITCH_PIN);
@@ -38,8 +41,10 @@ int main(void)
 		if(switch_status() ==  1)
 		{
 
-			led_toggle(LED_GREEN);
-			DelayMs(200);
+
+							led_toggle(arr[i]);
+									DelayMs(100);
+									i=(i+1)%4;
 
 		}
 	}

@@ -1,35 +1,10 @@
-21:58:00 **** Build of configuration Debug for project DMA_bareM ****
+16:16:10 **** Build of configuration Debug for project DMA_bareM ****
 make -j8 all 
-arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=soft -mthumb -o "Src/main.o"
-../Src/main.c: In function 'main':
-../Src/main.c:52:26: warning: pointer targets in passing argument 1 of 'DMA_Mem_Transfer' differ in signedness [-Wpointer-sign]
-   52 |         DMA_Mem_Transfer(destination,source,sizeof(destination));
-      |                          ^~~~~~~~~~~
-      |                          |
-      |                          char *
-In file included from ../Src/main.c:26:
-../Inc/dma.h:14:32: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
-   14 | void DMA_Mem_Transfer(uint8_t *dma_mem_dest, uint8_t *dma_mem_src, uint16_t size);
-      |                       ~~~~~~~~~^~~~~~~~~~~~
-../Src/main.c:52:38: warning: pointer targets in passing argument 2 of 'DMA_Mem_Transfer' differ in signedness [-Wpointer-sign]
-   52 |         DMA_Mem_Transfer(destination,source,sizeof(destination));
-      |                                      ^~~~~~
-      |                                      |
-      |                                      char *
-../Inc/dma.h:14:55: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
-   14 | void DMA_Mem_Transfer(uint8_t *dma_mem_dest, uint8_t *dma_mem_src, uint16_t size);
-      |                                              ~~~~~~~~~^~~~~~~~~~~
-arm-none-eabi-gcc -o "DMA_bareM.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/krushna/STM32_Projects/DMA_bareM/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DMA_bareM.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DMA_bareM.elf
- 
 arm-none-eabi-size  DMA_bareM.elf 
-arm-none-eabi-objdump -h -S DMA_bareM.elf  > "DMA_bareM.list"
    text	   data	    bss	    dec	    hex	filename
    1964	    260	   1828	   4052	    fd4	DMA_bareM.elf
 Finished building: default.size.stdout
  
-Finished building: DMA_bareM.list
- 
 
-21:58:00 Build Finished. 0 errors, 2 warnings. (took 375ms)
+16:16:10 Build Finished. 0 errors, 0 warnings. (took 155ms)
 

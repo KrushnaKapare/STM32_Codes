@@ -39,17 +39,17 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_macro  00017fad  00000000  00000000  00003086  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   00000f66  00000000  00000000  0001b033  2**0
+ 18 .debug_line   00000f68  00000000  00000000  0001b033  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    0008b86f  00000000  00000000  0001bf99  2**0
+ 19 .debug_str    0008b846  00000000  00000000  0001bf9b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000043  00000000  00000000  000a7808  2**0
+ 20 .comment      00000043  00000000  00000000  000a77e1  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  000001b8  00000000  00000000  000a784c  2**2
+ 21 .debug_frame  000001b8  00000000  00000000  000a7824  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_loclists 00000025  00000000  00000000  000a7a04  2**0
+ 22 .debug_loclists 00000025  00000000  00000000  000a79dc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 23 .debug_line_str 0000004c  00000000  00000000  000a7a29  2**0
+ 23 .debug_line_str 0000004c  00000000  00000000  000a7a01  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -316,7 +316,7 @@ int main(void)
  8000332:	f813 3c08 	ldrb.w	r3, [r3, #-8]
  8000336:	4618      	mov	r0, r3
  8000338:	f7ff ffa2 	bl	8000280 <led_toggle>
-			DelayMs(100);
+             DelayMs(100);
  800033c:	2064      	movs	r0, #100	@ 0x64
  800033e:	f7ff ffb5 	bl	80002ac <DelayMs>
 			i=(i+1)%4;

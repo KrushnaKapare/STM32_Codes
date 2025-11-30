@@ -1027,18 +1027,18 @@ LOAD /opt/st/stm32cubeide_1.19.0/plugins/com.st.stm32cube.ide.mcu.externaltools.
  .debug_macro   0x00017f35       0x2e ./Src/system_stm32f4xx.o
  .debug_macro   0x00017f63       0x4a ./Src/system_stm32f4xx.o
 
-.debug_line     0x00000000      0xf66
+.debug_line     0x00000000      0xf68
  .debug_line    0x00000000      0x48a ./Src/led.o
- .debug_line    0x0000048a      0x591 ./Src/main.o
- .debug_line    0x00000a1b      0x4d0 ./Src/system_stm32f4xx.o
- .debug_line    0x00000eeb       0x7b ./Startup/startup_stm32f407vgtx.o
+ .debug_line    0x0000048a      0x593 ./Src/main.o
+ .debug_line    0x00000a1d      0x4d0 ./Src/system_stm32f4xx.o
+ .debug_line    0x00000eed       0x7b ./Startup/startup_stm32f407vgtx.o
 
-.debug_str      0x00000000    0x8b86f
- .debug_str     0x00000000    0x8b86f ./Src/led.o
+.debug_str      0x00000000    0x8b846
+ .debug_str     0x00000000    0x8b846 ./Src/led.o
                               0x87a3a (size before relaxing)
- .debug_str     0x0008b86f    0x8b4ec ./Src/main.o
- .debug_str     0x0008b86f    0x87e1d ./Src/system_stm32f4xx.o
- .debug_str     0x0008b86f       0x68 ./Startup/startup_stm32f407vgtx.o
+ .debug_str     0x0008b846    0x8b4ec ./Src/main.o
+ .debug_str     0x0008b846    0x87e1d ./Src/system_stm32f4xx.o
+ .debug_str     0x0008b846       0x68 ./Startup/startup_stm32f407vgtx.o
 
 .comment        0x00000000       0x43
  .comment       0x00000000       0x43 ./Src/led.o

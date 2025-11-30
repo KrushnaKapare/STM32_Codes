@@ -3,6 +3,7 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="true"/>
 	<list key="searchhistory">
+		<item value="HAL_TIM_IC_MspInit"/>
 		<item value="TIM9"/>
 		<item value="TIM8"/>
 		<item value="AB"/>
