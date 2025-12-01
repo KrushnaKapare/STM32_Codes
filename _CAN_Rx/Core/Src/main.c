@@ -46,7 +46,8 @@ UART_HandleTypeDef huart3;
 
 /* Simple flag set when CAN frame received (optional) */
 volatile uint8_t can_frame_received = 0;
-
+CAN_RxHeaderTypeDef rxHeader;
+uint8_t rxData[8];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -58,7 +59,15 @@ static void MX_USART3_UART_Init(void);
 
 /* UART printf helper */
 static void uart_printf(const char *fmt, ...);
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
+{
+    HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rxHeader, rxData);
 
+    float distance;
+    memcpy(&distance, rxData, sizeof(float));
+
+    uart_printf("CAN RX → ID: 0x%03X  Distance: %.2f cm\r\n", rxHeader.StdId, distance);
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -95,7 +104,18 @@ int main(void)
   MX_USART3_UART_Init();
 
   /* USER CODE BEGIN 2 */
+
+  HAL_CAN_Start(&hcan1);
+
   uart_printf("STM32 CAN Receiver ready\r\n");
+  if (HAL_CAN_Start(&hcan1) != HAL_OK)
+         uart_printf("CAN START ERROR\r\n");
+     else
+         uart_printf("CAN Started OK\r\n");
+
+     // Enable message pending interrupt
+    HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -106,25 +126,16 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  /* CAN Bus-Off detection */
-	  if ((hcan1.Instance->ESR & CAN_ESR_BOFF) != 0)
-	    {
-	        uart_printf("CAN BUS-OFF ERROR! Restarting CAN...\r\n");
+	  if (__HAL_CAN_GET_FLAG(&hcan1, CAN_FLAG_BOF))
+	     {
+	         uart_printf("CAN BUS-OFF detected — resetting CAN...\r\n");
 
-	        HAL_CAN_Stop(&hcan1);
-	        HAL_CAN_Start(&hcan1);
-	        HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
-	    }
+	         HAL_CAN_Stop(&hcan1);
+	         HAL_CAN_Start(&hcan1);
+	         HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
+	     }
 
-	    /* LED blink when frame received */
-	    if (can_frame_received)
-	    {
-	      HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_SET);
-	      HAL_Delay(50);
-	      HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET);
-	      can_frame_received = 0;
-	    }
-
-	    HAL_Delay(10);
+	     HAL_Delay(1000);
   /* USER CODE END 3 */
 }
 }
@@ -322,21 +333,21 @@ static void MX_GPIO_Init(void)
   * @brief This callback is executed by HAL when a message is pending in CAN RX FIFO0.
   * It reads the message, extracts the first 4 bytes as a float (distance_cm) and prints it.
   */
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
-{
-    CAN_RxHeaderTypeDef rxHeader;
-    uint8_t rxData[8];
-
-    if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rxHeader, rxData) == HAL_OK)
-    {
-        float distance;
-        memcpy(&distance, rxData, sizeof(float));
-
-        uart_printf("CAN RX - ID: 0x%03X, Distance: %.2f cm\r\n",
-                    rxHeader.StdId, distance);
-    }
-
-}
+//void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
+//{
+//    CAN_RxHeaderTypeDef rxHeader;
+//    uint8_t rxData[8];
+//
+//    if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rxHeader, rxData) == HAL_OK)
+//    {
+//        float distance;
+//        memcpy(&distance, rxData, sizeof(float));
+//
+//        uart_printf("CAN RX - ID: 0x%03X, Distance: %.2f cm\r\n",
+//                    rxHeader.StdId, distance);
+//    }
+//
+//}
 
 
 

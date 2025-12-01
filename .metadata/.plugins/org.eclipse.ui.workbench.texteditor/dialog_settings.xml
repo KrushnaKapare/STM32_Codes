@@ -3,6 +3,9 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="true"/>
 	<list key="searchhistory">
+		<item value="canFilter"/>
+		<item value="HAL_CAN_Start"/>
+		<item value="CAN1_RX0_IRQHandler()"/>
 		<item value="HAL_TIM_IC_MspInit"/>
 		<item value="TIM9"/>
 		<item value="TIM8"/>

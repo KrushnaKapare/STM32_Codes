@@ -1,22 +1,21 @@
-23:40:07 **** Incremental Build of configuration Debug for project _CAN_Rx ****
+00:23:44 **** Incremental Build of configuration Debug for project _CAN_Rx ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
 arm-none-eabi-gcc -o "_CAN_Rx.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/krushna/STM32_Projects/_CAN_Rx/STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="_CAN_Rx.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: _CAN_Rx.elf
  
 arm-none-eabi-size  _CAN_Rx.elf 
 arm-none-eabi-objdump -h -S _CAN_Rx.elf  > "_CAN_Rx.list"
    text	   data	    bss	    dec	    hex	filename
-  28456	    468	   2020	  30944	   78e0	_CAN_Rx.elf
+  28488	    468	   2052	  31008	   7920	_CAN_Rx.elf
 Finished building: default.size.stdout
  
 Finished building: _CAN_Rx.list
  
-23:40:10 **** Incremental Build of configuration Debug for project _CAN_Rx ****
+00:23:47 **** Incremental Build of configuration Debug for project _CAN_Rx ****
 make -j8 all 
 arm-none-eabi-size  _CAN_Rx.elf 
    text	   data	    bss	    dec	    hex	filename
-  28456	    468	   2020	  30944	   78e0	_CAN_Rx.elf
+  28488	    468	   2052	  31008	   7920	_CAN_Rx.elf
 Finished building: default.size.stdout
  
