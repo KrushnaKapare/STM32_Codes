@@ -1,0 +1,16 @@
+22:54:16 **** Incremental Build of configuration Debug for project _CAN_Tx ****
+make -j8 all 
+arm-none-eabi-gcc -o "_CAN_Tx.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/krushna/STM32_Projects/_CAN_Tx/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="_CAN_Tx.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: _CAN_Tx.elf
+ 
+arm-none-eabi-size  _CAN_Tx.elf 
+arm-none-eabi-objdump -h -S _CAN_Tx.elf  > "_CAN_Tx.list"
+   text	   data	    bss	    dec	    hex	filename
+  32884	    468	   2140	  35492	   8aa4	_CAN_Tx.elf
+Finished building: default.size.stdout
+ 
+Finished building: _CAN_Tx.list
+ 
+
+22:54:16 Build Finished. 0 errors, 0 warnings. (took 240ms)
+
